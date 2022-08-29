@@ -38,7 +38,7 @@ class QzssDcrDecoderJmaCommon(QzssDcrDecoderBase):
                 dt_mo = 1
                 dt_y += 1
             else:
-                dt_mon += 1
+                dt_mo += 1
         if dt_mo == 2 and dt_d == 29:
             while dt_y % 4 != 0 or \
                     (dt_y % 100 == 0 and dt_y % 400 != 0):
