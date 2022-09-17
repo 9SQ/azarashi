@@ -141,6 +141,8 @@ class QzssDcrDecoderJmaCommon(QzssDcrDecoderBase):
 
     def extract_seismic_epicenter_field(self, slider):
         ep = self.extract_field(slider, 10)
+        if ep == 0:
+            return '未定義'
         try:
             return qzss_dcr_jma_epicenter_and_hypocenter[ep]
         except:
