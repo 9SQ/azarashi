@@ -3,6 +3,7 @@ from ..decoder import QzssDcrDecoderBase
 from ..decoder import QzssDcrDecoder
 from ..report import QzssDcReportBase
 from ..definition import spresense_qzss_dcr_message_header
+from ..definition import qzss_dcr_satellite_id
 
 
 class SpresenseQzssDcrDecoder(QzssDcrDecoderBase):
@@ -76,7 +77,12 @@ class SpresenseQzssDcrDecoder(QzssDcrDecoderBase):
             raise QzssDcrDecoderException(
                     f'Invalid Satellite ID: {sat_id}',
                     self.sentence)
-        self.satellite_id = int(sat_id, 16) + 100
+        try:
+            self.satellite_id = qzss_dcr_satellite_id[int(sat_id, 16)]
+        except:
+            raise QzssDcrDecoderException(
+                    f'Invalid Satellite ID: {sat_id}',
+                    self.sentence)
 
         # converts the message to bytes type
         try:
